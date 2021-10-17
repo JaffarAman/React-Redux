@@ -1,0 +1,23 @@
+{
+  "name": "react-js",
+  "version": "1.0.0",
+  "description": "react app deploy heroku with node server",
+  "main": "app.js",
+  "scripts": {
+    "test": "node js",
+    "start" : "npm start",
+    "dev" : "nodemon app.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaffaraman"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Jaffar Aman",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
