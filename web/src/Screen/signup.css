@@ -1,0 +1,45 @@
+/* #09DEEA */
+
+.signUpBox{
+    width: 100%;
+    min-height:100vh ;
+    /* border: 2px solid red; */
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.signUpImg{
+    width: 300px;
+    /* border: 1px solid brown; */
+    margin: 10px;
+    flex-shrink: 0;
+}
+
+.upFOrmBOx{
+    padding: 8px;
+    margin: 10px;
+    /* border: 1px solid black; */
+    width: 400px;
+    min-width: 300px;
+    
+}
+.upFOrmBOx h2{
+    width: 100%;
+    text-align: center;
+    /* padding: 5px 0; */
+
+}
+.upFOrmBOx h2 span{
+    border-bottom: 2px solid #09DEEA ;
+    padding: 5px 0;
+}
+.upFOrmBOx input{
+    width: 100% !important;
+}
+
+.upFOrmBOx small{
+    display: block;
+    font-weight: bold;
+    margin: 3px 0;
+}

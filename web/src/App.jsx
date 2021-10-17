@@ -1,11 +1,27 @@
 import React from 'react'
-
+import SignUpScreen from './Screen/SignUpScreen'
+import "./maincssFile.css"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import LogIn from './Screen/LogIn';
 const App = () => {
     return (
-        <div>
-     
-                <h1>React js Application With Node Js Server </h1>
-        </div>
+        <>
+            <Router>
+            <Switch>
+        
+                <Route  path="/signup"  component={SignUpScreen} />
+                
+                <Route exact path="/" component={LogIn} />
+
+            </Switch>
+            </Router>
+                
+        </>
     )
 }
 

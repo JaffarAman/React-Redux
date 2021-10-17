@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "node js",
-    "start" : "node app.js",
-    "dev" : "nodemon app.js "
+    "start": "node app.js",
+    "dev": "nodemon app.js "
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,8 @@
   "author": "Jaffar Aman",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.11"
   }
 }
