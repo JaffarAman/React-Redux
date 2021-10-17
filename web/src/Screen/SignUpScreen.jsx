@@ -6,7 +6,7 @@ import { Formik, Form } from "formik";
 import FormButton from "../Components/Button";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-// import axios from "axios"
+import axios from "axios"
 
 const SignUpScreen = () => {
   const validate_Schema = Yup.object({
@@ -27,6 +27,21 @@ const SignUpScreen = () => {
     .required("Required")
   });
 
+  const signUp = (values)=>{
+
+    axios.post("http://localhost:8000/api/v1/signup" , {
+      firstName : values.firstName,
+      lastName : values.lastName,
+      emailAddress : values.emailAddress,
+      password : values.password,
+      confirmPassword : values.confirmPassword,
+    })
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err))
+    console.log(values.firstName)
+  }
+
+
   return (
     <div className="signUpBox">
       <div className="signUpImg">
@@ -45,8 +60,8 @@ const SignUpScreen = () => {
             password: "",
             confirmPassword: "",
           }}
-          onSubmit={(values) => console.log( "Submit valuess" ,values)}
-          validationSchema={validate_Schema}
+          onSubmit={(values) => signUp(values)}
+          // validationSchema={validate_Schema}
         >
           {(values) => (
             <Form>
