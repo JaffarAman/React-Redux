@@ -7,6 +7,7 @@ import FormButton from "../Components/Button";
 import * as Yup from "yup";
 import { Link ,useHistory } from "react-router-dom";
 import axios from "axios";
+import {BASE_URI} from "../core"
 
 const SignUpScreen = () => {
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ const SignUpScreen = () => {
   const signUp = (values) => {
     setLoading(true);
     axios
-      .post("http://localhost:5000/api/v1/signup", {
+      .post(`${BASE_URI}/api/v1/signup`, {
         firstName: values.firstName,
         lastName: values.lastName,
         emailAddress: values.emailAddress,
