@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./signup.css";
 import SignUpImg from "../images/signUP.svg";
 import InputTextFeild from "../Components/InputField";
 import { Formik, Form } from "formik";
 import FormButton from "../Components/Button";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
-import axios from "axios"
+import { Link ,useHistory } from "react-router-dom";
+import axios from "axios";
 
 const SignUpScreen = () => {
+  const [loading, setLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [errorBoxClass , setErrorBoxClass ] = useState("errorBOx")
   const validate_Schema = Yup.object({
     firstName: Yup.string()
       .max(15, "Must be 15 characters or less")
@@ -17,33 +20,55 @@ const SignUpScreen = () => {
       .max(15, "Must be 15 characters or less")
       .required("Required"),
     emailAddress: Yup.string()
-    .email("Enter a valid Email")
-    .required("Required"),
+      .email("Enter a valid Email")
+      .required("Required"),
     password: Yup.string()
-    .min(6,"Password should be of minimum 8 characters length")
-    .required("Required"),
-    confirmPassword : Yup.string()
-    .oneOf([Yup.ref("password"), null] , "Password Must be Match")
-    .required("Required")
+      .min(6, "Password should be of minimum 8 characters length")
+      .required("Required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Password Must be Match")
+      .required("Required"),
   });
 
-  const signUp = (values)=>{
+  
+  const signUp = (values) => {
+    setLoading(true);
+    axios
+      .post("http://localhost:5000/api/v1/signup", {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        emailAddress: values.emailAddress,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setLoading(false)
+        if(res.data === `This Email Address is Already Exist`){
+          console.log(res.data)
+          setErrorBoxClass("errorBOx show")
+          setTimeout(()=>{
+          setErrorBoxClass("errorBOx")
 
-    axios.post("http://localhost:8000/api/v1/signup" , {
-      firstName : values.firstName,
-      lastName : values.lastName,
-      emailAddress : values.emailAddress,
-      password : values.password,
-      confirmPassword : values.confirmPassword,
-    })
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
-    console.log(values.firstName)
+          } , 3000)
+        }else{
+          
+          setIsSignUp(true)
+        }
+
+      })
+      .catch((err) => {
+        console.log(err)
+         setLoading(false) });
+    console.log(values.firstName);
+  };
+  const history  = useHistory()
+  const loginPage = ()=>{
+        history.replace('/')
   }
-
-
   return (
     <div className="signUpBox">
+      <h3 className={errorBoxClass}>Email Address is Already Exist</h3>
       <div className="signUpImg">
         <img src={SignUpImg} width="100%" alt="" />
       </div>
@@ -61,7 +86,7 @@ const SignUpScreen = () => {
             confirmPassword: "",
           }}
           onSubmit={(values) => signUp(values)}
-          // validationSchema={validate_Schema}
+          validationSchema={validate_Schema}
         >
           {(values) => (
             <Form>
@@ -82,11 +107,14 @@ const SignUpScreen = () => {
                 type="password"
                 name="confirmPassword"
               />
-                <Link to="/" > 
+              <Link to="/">
                 <small>Already have an Account? Sign In </small>
-                </Link>
+              </Link>
 
-              <FormButton value="Sign Up" />
+              {!isSignUp ?
+              <FormButton value={loading ? true : "Sign Up"} /> :
+              <FormButton  addFun={loginPage} value={"User Succesfully Signup"} />
+              }
             </Form>
           )}
         </Formik>

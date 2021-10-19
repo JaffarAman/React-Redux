@@ -8,6 +8,7 @@ import {
   Link
 } from "react-router-dom";
 import LogIn from './Screen/LogIn';
+import  DashboardScreen from "./Screen/DashboardScreen"
 const App = () => {
     return (
         <>
@@ -17,7 +18,8 @@ const App = () => {
                 <Route  path="/signup"  component={SignUpScreen} />
                 
                 <Route exact path="/" component={LogIn} />
-
+                <Route exact path="/dashboard" component={DashboardScreen} />
+            
             </Switch>
             </Router>
                 

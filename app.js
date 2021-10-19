@@ -38,19 +38,24 @@ app.post("/api/v1/signin", (req, res) => {
           if (err) {
             throw err;
           } else {
-            const isMatch = await bcrypt.compare(userObj.password, data.password)
-            .then(response=>{
-                if(response){
-                    console.log(response)
-                    res.send("login successfully")
+                if(data){
+                    const isMatch = await bcrypt.compare(userObj.password, data.password)
+                    .then(response=>{
+                        if(response){
+                            console.log(response)
+                            res.send("login successfully")
+                            
+                        }else{
+                            res.send("password is not match")
+                            console.log("isMatch not")
+                        }
+                    })
+                    .catch(err=>console.log(err))
                     
                 }else{
-                    res.send("password is not match")
-                    console.log("isMatch not")
+                    res.send("incorrect Email Address")
                 }
-            })
-            .catch(err=>console.log(err))
-            
+
           }
         }
       );
@@ -59,7 +64,7 @@ app.post("/api/v1/signin", (req, res) => {
     res.send(error.message);
   }
 
-  
+
 });
 
 /////SIGNUP API////
@@ -101,21 +106,22 @@ app.post("/api/v1/signup", async (req, res) => {
               throw err;
             } else {
               if (data) {
-                throw "This Email Address is Already Exist";
+                res.send("This Email Address is Already Exist");
               } else {
+                signUpModel.create(userObj, (err, data) => {
+                    if (err) {
+                      throw err;
+                    } else {
+                      console.log("create data=>>", data);
+                      res.send("User SuccessFully SignUp...");
+                        
+                    }
+                  });
               }
             }
           }
         );
-        signUpModel.create(userObj, (err, data) => {
-          if (err) {
-            throw err;
-          } else {
-            console.log("create data=>>", data);
-            res.send("User SuccessFully SignUp...");
-          }
-        });
-        console.log("USER OBJECT ==>>", userObj);
+
       }
     }
   } catch (error) {

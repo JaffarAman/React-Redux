@@ -1,22 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import LoginPic from "../images/logIn.svg";
 import { Form, Formik } from "formik";
 import InputTextFeild from "../Components/InputField";
 import FormButton from "../Components/Button";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
-
+import { Link , useHistory } from "react-router-dom";
+import axios from "axios";
 const LogIn = () => {
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null)
+  const [errorBoxClass , setErrorBoxClass ] = useState("errorBOx")
+  const history =  useHistory() 
   const validate = Yup.object({
-    userEmail: Yup.string().required("Required").email("Enter a valid Email"),
+    emailAddress: Yup.string()
+      .required("Required")
+      .email("Enter a valid Email"),
     password: Yup.string()
       .required("Required")
       .min(6, "Password should be of minimum 8 characters length"),
   });
+  const login = (values) => {
+    // console.log(values);
+    setLoading(true)
+    axios
+      .post("http://localhost:5000/api/v1/signin", {
+        emailAddress: values.emailAddress,
+        password: values.password,
+      })
+      .then((res) => {
+        console.log(res);
+        setLoading(false);
+        if(res.data == "login successfully"){
+          history.replace("/dashboard")
+        }else{
+            setErrorMsg(res.data)
+            setErrorBoxClass("errorBOx show")
+            setTimeout(()=>{
+              setErrorBoxClass("errorBOx")
+    
+              } , 3000)
+        }
 
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="loginBox">
+      <h3 className={errorBoxClass}>{errorMsg}</h3>
       <div className="LoginPic">
         <img src={LoginPic} width="100%" alt="" />
       </div>
@@ -27,10 +58,10 @@ const LogIn = () => {
 
         <Formik
           initialValues={{
-            userEmail: "",
+            emailAddress: "",
             password: "",
           }}
-          onSubmit={(values) => console.log("login values", values)}
+          onSubmit={(values) => login(values)}
           validationSchema={validate}
         >
           {(values) => (
@@ -38,7 +69,7 @@ const LogIn = () => {
               <InputTextFeild
                 label="User Email Address"
                 type="email"
-                name="userEmail"
+                name="emailAddress"
               />
               <InputTextFeild
                 label="Password"
@@ -46,13 +77,13 @@ const LogIn = () => {
                 name="password"
               />
               <small className="forgetDiv">Forget Password?</small>
-              <FormButton value="Login" />
+              <FormButton value={ loading ? true : "Login"} />
             </Form>
           )}
         </Formik>
-            <Link to="signup">
-        <small className="notAcc">Don't have An Account? Click Here</small>
-            </Link>
+        <Link to="signup">
+          <small className="notAcc">Don't have An Account? Click Here</small>
+        </Link>
       </div>
     </div>
   );
