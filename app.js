@@ -43,7 +43,7 @@ app.post("/api/v1/signin", (req, res) => {
                     .then(response=>{
                         if(response){
                             console.log(response)
-                            res.send("login successfully")
+                            res.send({status:"login successfully" , data})
                             
                         }else{
                             res.send("password is not match")

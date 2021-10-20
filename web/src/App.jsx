@@ -1,6 +1,7 @@
 import React from 'react'
 import SignUpScreen from './Screen/SignUpScreen'
 import "./maincssFile.css"
+import PrivateRoute from "./config/routes"
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,8 +18,11 @@ const App = () => {
         
                 <Route  path="/signup"  component={SignUpScreen} />
                 
+                
                 <Route exact path="/" component={LogIn} />
-                <Route exact path="/dashboard" component={DashboardScreen} />
+                
+                <PrivateRoute component={DashboardScreen} exact path="/dashboard" />
+                {/* <Route exact path="/dashboard" component={DashboardScreen} /> */}
             
             </Switch>
             </Router>
