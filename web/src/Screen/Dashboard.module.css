@@ -1,0 +1,41 @@
+.postSectionBox{
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+.postBox{
+    border: 1px solid lightgrey;
+    width: 400px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 10px;
+    border-radius:5px;
+}
+.postCardHeading{
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+}
+.postCardHeading p{
+    font-weight: bold;
+}
+.postInputBox{
+    width: 100%;
+    /* border: 1px solid red; */
+}
+.postInputBox textarea{
+    width: 100%;
+    border: 1px solid gray;
+    border-radius:8px;
+    padding:8px;
+    outline:none;
+}
+.postBtns{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.postBtns button{
+    margin: 0 5px;
+}

@@ -35,7 +35,7 @@ const LogIn = () => {
         setLoading(false);
         if(res.data.status == "login successfully"){
             localStorage.setItem("data",JSON.stringify(res.data.data))
-          // history.replace("/dashboard")
+          history.replace("/dashboard")
         }else{
             setErrorMsg(res.data)
             setErrorBoxClass("errorBOx show")
