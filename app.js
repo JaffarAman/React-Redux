@@ -179,11 +179,37 @@ app.post("/api/v1/post" , (req,res)=>{
 })
 
 app.put("/api/v1/post" , (req,res)=>{
-    const body = req.body;
+    const {uPostId ,postCapture } = req.body;
+    // console.log(body);
+    try {
+        postModel.findOneAndUpdate({uPostId} , {postCapture} , (err,data)=>{
+            if(err){
+              throw err
+            }else{
+              res.send("update")
+              console.log(data)
+            }
+        })
+    } catch (error) {
+      
+    }
 })
 
 app.delete("/api/v1/post" , (req,res)=>{
+  const {uPostId} = req.body;
+  // console.log(body);
+  try {
+      postModel.deleteOne({uPostId}  , (err,data)=>{
+          if(err){
+            throw err
+          }else{
+            res.send("delete")
+            console.log(data)
+          }
+      })
+  } catch (error) {
     
+  }
 })
 
 
