@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 
 ///SIGNUP SCHEMA///
-const signUpModel = require("./Schema");
+const {signUPModel , postModel} = require("./Schema");
 
 const cors = require("cors");
 ///body allow///
@@ -32,7 +32,7 @@ app.post("/api/v1/signin", (req, res) => {
     if (!userObj.emailAddress || !userObj.password) {
       throw `Required Fields is missing`;
     } else {
-      signUpModel.findOne(
+      signUPModel.findOne(
         { emailAddress: userObj.emailAddress },
         async (err, data) => {
           if (err) {
@@ -99,7 +99,7 @@ app.post("/api/v1/signup", async (req, res) => {
           body.confirmPassword
         );
       } else {
-        signUpModel.findOne(
+        signUPModel.findOne(
           { emailAddress: userObj.emailAddress },
           (err, data) => {
             if (err) {
@@ -108,7 +108,7 @@ app.post("/api/v1/signup", async (req, res) => {
               if (data) {
                 res.send("This Email Address is Already Exist");
               } else {
-                signUpModel.create(userObj, (err, data) => {
+                signUPModel.create(userObj, (err, data) => {
                     if (err) {
                       throw err;
                     } else {
@@ -128,6 +128,65 @@ app.post("/api/v1/signup", async (req, res) => {
     console.log(`Get a error During a SignUp ${error}`);
   }
 });
+
+
+
+app.get("/api/v1/post" , (req,res)=>{
+      const body = req.body
+      console.log(body)
+      try {
+
+          postModel.find(body , (err,data)=>{
+              if(err){
+                throw err
+              }else{
+                res.send(data)
+                console.log(data);
+              }
+          })
+
+      } catch (error) {
+        
+      }
+  // res.send("get")
+})
+
+app.post("/api/v1/post" , (req,res)=>{
+        const body = req.body
+        console.log(body)
+        try {
+            const userPost = {
+              userId : body.userId,
+              userName : body.userName,
+              postCapture : body.postCapture,
+              date : body.date,
+            };
+
+           postModel.create(userPost , (err, data)=>{
+             if(err){
+               throw err
+             }else{
+                res.send("SUCCESSFFULLY YOUR POST IS CREATE")
+                console.log(data)
+             }
+           }) 
+
+
+        } catch (error) {
+            console.log(error);
+        }
+        
+})
+
+app.put("/api/v1/post" , (req,res)=>{
+    const body = req.body;
+})
+
+app.delete("/api/v1/post" , (req,res)=>{
+    
+})
+
+
 
 app.get("/**", (req, res) => {
   res.redirect("/");

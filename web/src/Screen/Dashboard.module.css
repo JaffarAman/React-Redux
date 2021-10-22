@@ -16,6 +16,7 @@
 .postCardHeading{
     width: 100%;
     border-bottom: 1px solid lightgray;
+    margin-bottom: 5px;
 }
 .postCardHeading p{
     font-weight: bold;

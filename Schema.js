@@ -12,6 +12,18 @@ const SignUpSchema = mongoose.Schema({
     }
 })
 
-const SignUPModel = mongoose.model("users" , SignUpSchema)
+const postSchema = mongoose.Schema({
+        userId : String,
+        userName : String,
+        postCapture : String,
+        date : String,
+        created_on: {
+            type : Date,
+            default : Date.now
+        }
+})
 
-module.exports = SignUPModel;
+const signUPModel = mongoose.model("users" , SignUpSchema)
+const postModel = mongoose.model("posts" , postSchema)
+
+module.exports = {signUPModel, postModel };
