@@ -48,7 +48,7 @@ const DashboardScreen = () => {
         userName: user.firstName + user.lastName,
         postCapture: inputValue,
         date: new Date().toLocaleDateString(),
-        userId : "12345",
+        userId : user._id,
     }
     await axios.post(`${BASE_URI}/api/v1/post` , postObj )
     .then(res=>{
