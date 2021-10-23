@@ -132,11 +132,11 @@ app.post("/api/v1/signup", async (req, res) => {
 
 
 app.get("/api/v1/post" , (req,res)=>{
-      const body = req.body
-      console.log(body)
+      // const body = req.body
+      // console.log(body)
       try {
 
-          postModel.find(body , (err,data)=>{
+          postModel.find({} , (err,data)=>{
               if(err){
                 throw err
               }else{
@@ -179,10 +179,18 @@ app.post("/api/v1/post" , (req,res)=>{
 })
 
 app.put("/api/v1/post" , (req,res)=>{
-    const {uPostId ,postCapture } = req.body;
+    const {postCap, uPostId} = req.body;
     // console.log(body);
+    // console.log(req.params)
+    console.log(postCap)
+    console.log(uPostId)
+
+    // const postObj = {
+    //   postCapture : body.postCap,
+    //   _id : body.uPostId
+    // }
     try {
-        postModel.findOneAndUpdate({uPostId} , {postCapture} , (err,data)=>{
+        postModel.findOneAndUpdate({_id : uPostId} , {postCapture : postCap} , (err,data)=>{
             if(err){
               throw err
             }else{
@@ -195,11 +203,16 @@ app.put("/api/v1/post" , (req,res)=>{
     }
 })
 
-app.delete("/api/v1/post" , (req,res)=>{
-  const {uPostId} = req.body;
-  // console.log(body);
+app.delete("/api/v1/post/:id" , (req,res)=>{
+  // const  body  = req.body;
+  // console.log(body.uPostId);
+  // console.log(req.params) 
+  const delObj = {
+    _id : req.params.id
+  } 
+  console.log(delObj)
   try {
-      postModel.deleteOne({uPostId}  , (err,data)=>{
+      postModel.deleteOne( delObj  , (err,data)=>{
           if(err){
             throw err
           }else{
@@ -223,3 +236,4 @@ mongoose.connection.on("error", (error) =>
   console.log("mongoose error", error)
 );
 app.listen(PORT, () => console.log(`Server is Running on localhost:${PORT} `));
+    
