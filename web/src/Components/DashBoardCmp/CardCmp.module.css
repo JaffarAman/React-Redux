@@ -1,0 +1,48 @@
+.cardMainBox{
+    /* border: 1px solid red; */
+    max-width: 320 ;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 5px 0;
+}
+
+.cardHeader{
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+    
+    display: flex;
+    align-items: center;
+}
+.cardHeader p{
+    margin: 0;
+    font-size: small;
+    font-weight: bold;
+}
+.iconBOx{
+    padding: 3px;
+    margin: 0 10px;
+}
+
+.cardBody{
+    border-bottom: 2px solid lightgray;
+    width: 100%;
+    padding: 5px;
+    height: 100px;
+}
+
+.cardFooter{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px 0;
+}
+.cardFooter button{
+    font-size: small;
+    margin: 0 5px;
+}
+
+.cardBody textarea{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+}
