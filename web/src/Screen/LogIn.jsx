@@ -10,6 +10,7 @@ import axios from "axios";
 import {BASE_URI} from "../core"
 
 const LogIn = () => {
+  // const history = useHistory()
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null)
   const [errorBoxClass , setErrorBoxClass ] = useState("errorBOx")
@@ -22,6 +23,10 @@ const LogIn = () => {
       .required("Required")
       .min(6, "Password should be of minimum 8 characters length"),
   });
+  if(localStorage.getItem("data")){
+    history.push("/dashboard")
+  }
+
   const login = (values) => {
     // console.log(values);
     setLoading(true)

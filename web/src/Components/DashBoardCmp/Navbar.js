@@ -1,7 +1,13 @@
 import React from 'react'
 import { Navbar , Nav} from "react-bootstrap"
+import { useHistory } from 'react-router'
 const NavbarApp = () => {
-    return (
+  const history = useHistory()
+  const logout =()=>{
+      localStorage.removeItem("data")
+      history.replace('/')
+  }
+  return (
         <div>
             <Navbar style={{backgroundColor : "#09DEEA"}} expand="lg">
   <Navbar.Brand href="#home">Carrier <del>Carrer</del> </Navbar.Brand>
@@ -10,6 +16,7 @@ const NavbarApp = () => {
     <Nav className="ml-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#link">Profile</Nav.Link>
+      <Nav.Link href="javascript:void()" onClick={()=>logout()}>LOGOUT</Nav.Link>
       {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

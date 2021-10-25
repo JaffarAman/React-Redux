@@ -30,7 +30,7 @@ const SignUpScreen = () => {
       .oneOf([Yup.ref("password"), null], "Password Must be Match")
       .required("Required"),
   });
-
+ 
   
   const signUp = (values) => {
     setLoading(true);
@@ -66,6 +66,9 @@ const SignUpScreen = () => {
   const history  = useHistory()
   const loginPage = ()=>{
         history.replace('/')
+  }
+  if(localStorage.getItem("data")){
+    history.push("/dashboard")
   }
   return (
     <div className="signUpBox">
