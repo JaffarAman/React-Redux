@@ -4,12 +4,15 @@ import NavbarApp from "../Components/DashBoardCmp/Navbar";
 import styles from "./Dashboard.module.css";
 import axios from "axios"
 import {BASE_URI} from "../core"
+import SwitchesSize from "../Components/Switch"
 
 const DashboardScreen = () => {
   const [inputValue, setInputValue] = useState("");
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("data")));
   const [indexNum, setIndexNum] = useState(null);
-  const [postSend ,setPostSend] = useState(false)
+  const [postSend ,setPostSend] = useState(false);
+  const [checkHandle , setCheckHandle] = useState(false)
+  console.log(checkHandle)
   console.log("index =>>" ,indexNum)
   console.log(user);
   
@@ -49,6 +52,7 @@ const DashboardScreen = () => {
         postCapture: inputValue,
         date: new Date().toLocaleDateString(),
         userId : user._id,
+        privatePost : checkHandle
     }
     await axios.post(`${BASE_URI}/api/v1/post` , postObj )
     .then(res=>{
@@ -109,7 +113,7 @@ const DashboardScreen = () => {
   return (
     <div className="w-100">
       {/* <h1>Dashboard Screen</h1> */}
-      <NavbarApp />
+      <NavbarApp  />
 
       <div className={styles.postSectionBox}>
         <div className={styles.postBox}>
@@ -128,6 +132,7 @@ const DashboardScreen = () => {
             ></textarea>
           </section>
           <section className={styles.postBtns}>
+            <SwitchesSize  checkHandle={checkHandle} setCheckHandle={setCheckHandle}/>
             <button onClick={() => removeValue()} className={`btn btn-danger`}>
               Remove
             </button>
@@ -140,7 +145,7 @@ const DashboardScreen = () => {
 
       <section className="row m-0">
         {post.map((val, ind) => {
-            // console.log(val._id)
+            console.log(val.privatePost)
               
               return (
                   
@@ -157,7 +162,20 @@ const DashboardScreen = () => {
                     deletePost={deletePost}
                         
                   />
-                </div> : null
+                </div> : 
+                 !val.privatePost ?
+                <div className="col-lg-3 col-md-6">
+                <CardCmp
+                  name={val.userName}
+                  ind={ind}
+                  date={val.date}
+                  postCap={val.postCapture}
+                  indexNum={indexNum}
+                  setIndexNum={setIndexNum}
+                  editPostFun={editPost}
+                  deletePost={deletePost}
+                      
+                />  </div> : null  
                   
                 
               );  

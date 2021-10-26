@@ -17,6 +17,7 @@ const postSchema = mongoose.Schema({
         userName : String,
         postCapture : String,
         date : String,
+        privatePost : Boolean,
         created_on: {
             type : Date,
             default : Date.now
