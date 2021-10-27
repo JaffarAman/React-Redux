@@ -136,13 +136,12 @@ const DashboardScreen = () => {
           </section>
           <section className={styles.postInputBox}>
             <textarea
-              name=""
-              id=""
               cols="30"
               rows="3"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="What's on your mind?"
+              style={{color:darkTheme?"white" : "black"}}
             ></textarea>
           </section>
           <section className={styles.postBtns}>
@@ -175,7 +174,8 @@ const DashboardScreen = () => {
                     editPostFun={editPost}
                     deletePost={deletePost}
                     ownPost={true}
-                    privatePost={val.privatePost}   
+                    privatePost={val.privatePost}  
+                    darkTheme={darkTheme} 
                   />
                 </div> : 
                  !val.privatePost ?
@@ -191,6 +191,7 @@ const DashboardScreen = () => {
                   deletePost={deletePost}
                   ownPost={false}
                   privatePost={val.privatePost}   
+                  darkTheme={darkTheme} 
 
                       
                 />  </div> : null  

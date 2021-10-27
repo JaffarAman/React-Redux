@@ -5,11 +5,14 @@
     padding: 5px 0;
     margin: 10px 0;
 }
+.cardMainBoxDark{
+    color: white;
+    border:1px solid #09DEEA;
 
+}
 .cardHeader{
     width: 100%;
-    border-bottom: 2px solid lightgray;
-    
+    /* border-bottom: 2px solid lightgray; */
     display: flex;
     align-items: center;
 }
@@ -24,7 +27,7 @@
 }
 
 .cardBody{
-    border-bottom: 2px solid lightgray;
+    /* border-bottom: 2px solid lightgray; */
     width: 100%;
     padding: 5px;
     height: 100px;

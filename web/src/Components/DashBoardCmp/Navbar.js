@@ -19,9 +19,13 @@ const NavbarApp = ({icon, changeTheme}) => {
       <Nav.Link href="javascript:void()">
         <i className={icon} onClick={()=>changeTheme()} ></i>
       </Nav.Link>
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Profile</Nav.Link>
-      <Nav.Link href="javascript:void()" onClick={()=>logout()}>LOGOUT</Nav.Link>
+      <Nav.Link href="javascript:void()">Home</Nav.Link>
+      <Nav.Link href="javascript:void()">Profile</Nav.Link>
+      <Nav.Link href="javascript:void()" className="bg bg-dark rounded text-white" onClick={()=>logout()}>
+        
+        Logout
+        
+        </Nav.Link>
       {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
