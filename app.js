@@ -160,6 +160,7 @@ app.post("/api/v1/post" , (req,res)=>{
               userName : body.userName,
               postCapture : body.postCapture,
               date : body.date,
+              privatePost : body.privatePost
             };
 
            postModel.create(userPost , (err, data)=>{
