@@ -8,6 +8,13 @@ const NavbarApp = ({icon, changeTheme}) => {
       localStorage.removeItem("data")
       history.replace('/')
   }
+  const profile =()=>{
+    history.replace('/profile')
+}
+const home =()=>{
+  history.replace('/dashboard')
+}
+
   return (
         <div>
             <Navbar style={{backgroundColor : "#09DEEA"}} expand="lg">
@@ -19,20 +26,16 @@ const NavbarApp = ({icon, changeTheme}) => {
       <Nav.Link href="javascript:void()">
         <i className={icon} onClick={()=>changeTheme()} ></i>
       </Nav.Link>
-      <Nav.Link href="javascript:void()">Home</Nav.Link>
-      <Nav.Link href="javascript:void()">Profile</Nav.Link>
+      <Nav.Link href="javascript:void()" onClick={()=>home()}>
+        Home
+        </Nav.Link>
+      <Nav.Link href="javascript:void()" onClick={()=>profile()}>Profile</Nav.Link>
       <Nav.Link href="javascript:void()" className="bg bg-dark rounded text-white" onClick={()=>logout()}>
         
         Logout
         
         </Nav.Link>
-      {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown> */}
+  
     </Nav>
     
   </Navbar.Collapse>

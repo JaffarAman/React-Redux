@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import LogIn from './Screen/LogIn';
 import  DashboardScreen from "./Screen/DashboardScreen"
+import ProfileScreen from './Screen/ProfileScreen';
 const App = () => {
     return (
         <>
@@ -22,6 +23,7 @@ const App = () => {
                 <Route exact path="/" component={LogIn} />
                 
                 <PrivateRoute component={DashboardScreen} exact path="/dashboard" />
+                <PrivateRoute component={ProfileScreen} exact path="/profile" />
                 {/* <Route exact path="/dashboard" component={DashboardScreen} /> */}
             
             </Switch>
