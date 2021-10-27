@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./CardCmp.module.css";
 import { FaUserCircle } from "react-icons/all";
 import EditModal from "./EditModal";
-const CardCmp = ({name , postCap , date,ind , editPostFun, deletePost}) => {
+const CardCmp = ({name , postCap , date,ind , editPostFun, deletePost , ownPost}) => {
     
     return (
     <div className={styles.cardMainBox} >
@@ -24,8 +24,15 @@ const CardCmp = ({name , postCap , date,ind , editPostFun, deletePost}) => {
       </section>
       <section className={styles.cardFooter}>
           {/* <button id={ind}  className="btn btn-primary">Edit</button> */}
-          <EditModal editPostFun={editPostFun} indexNum={ind} placeHolder={postCap} />
-          <button id={ind} onClick={(e)=>deletePost(e.target.id)} className="btn btn-danger">DELETE</button>
+
+          {
+              ownPost ? <>
+                <EditModal editPostFun={editPostFun} indexNum={ind} placeHolder={postCap} />
+                <button id={ind} onClick={(e)=>deletePost(e.target.id)} className="btn btn-danger">DELETE</button>
+
+              </> 
+               : null
+          }
       </section>
     </div>
   );

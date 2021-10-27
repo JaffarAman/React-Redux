@@ -160,6 +160,7 @@ const DashboardScreen = () => {
                     setIndexNum={setIndexNum}
                     editPostFun={editPost}
                     deletePost={deletePost}
+                    ownPost={true}
                         
                   />
                 </div> : 
@@ -174,6 +175,8 @@ const DashboardScreen = () => {
                   setIndexNum={setIndexNum}
                   editPostFun={editPost}
                   deletePost={deletePost}
+                  ownPost={false}
+
                       
                 />  </div> : null  
                   

@@ -7,7 +7,7 @@ export default function FormButton({ value ,addFun }) {
   return (
     <Stack spacing={2} direction="row">
       <Button
-        style={{ width: "100%", backgroundColor: "#09DEEA" }}
+        style={{ width: "100%", backgroundColor: addFun ? "#52c234" : "#09DEEA" }}
         type="submit"
         variant="contained"
         onClick={addFun ? ()=>addFun() :null }
