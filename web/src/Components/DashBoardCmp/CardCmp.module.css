@@ -34,7 +34,9 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     margin: 5px 0;
+    height: 40px;
 }
 .cardFooter button{
     font-size: small;

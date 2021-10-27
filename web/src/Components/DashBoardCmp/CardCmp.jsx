@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./CardCmp.module.css";
-import { FaUserCircle } from "react-icons/all";
+import { FaUserCircle  , MdPublic , RiGitRepositoryPrivateFill} from "react-icons/all";
 import EditModal from "./EditModal";
-const CardCmp = ({name , postCap , date,ind , editPostFun, deletePost , ownPost}) => {
+const CardCmp = ({name , postCap , date,ind , editPostFun, deletePost , ownPost,privatePost}) => {
     
     return (
     <div className={styles.cardMainBox} >
@@ -12,7 +12,7 @@ const CardCmp = ({name , postCap , date,ind , editPostFun, deletePost , ownPost}
         </div>
         <div style={{borderLeft : "1px solid lightgrey" , padding : "5px"}}>
           <p>{name}</p>
-          <p>{date}</p>
+          <p>{date} {privatePost ? <RiGitRepositoryPrivateFill /> : <MdPublic /> } </p>
         </div>
       </section>
       <section className={styles.cardBody}>
@@ -28,7 +28,7 @@ const CardCmp = ({name , postCap , date,ind , editPostFun, deletePost , ownPost}
           {
               ownPost ? <>
                 <EditModal editPostFun={editPostFun} indexNum={ind} placeHolder={postCap} />
-                <button id={ind} onClick={(e)=>deletePost(e.target.id)} className="btn btn-danger">DELETE</button>
+                <button id={ind} onClick={(e)=>deletePost(e.target.id)} className="btn btn-outline-danger">DELETE</button>
 
               </> 
                : null

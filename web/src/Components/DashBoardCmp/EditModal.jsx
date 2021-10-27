@@ -19,9 +19,9 @@ const EditModal = ({placeHolder , editPostFun ,indexNum}) => {
     return (
         <div>
         <>
-      <Button variant="primary" onClick={handleShow}>
+      <button className="btn btn-primary" onClick={handleShow}>
         Edit
-      </Button>
+      </button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

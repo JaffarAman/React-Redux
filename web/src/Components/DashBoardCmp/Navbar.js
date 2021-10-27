@@ -1,7 +1,8 @@
 import React from 'react'
 import { Navbar , Nav} from "react-bootstrap"
 import { useHistory } from 'react-router'
-const NavbarApp = () => {
+import UseSwitchesCustom from './ThemeIcon'
+const NavbarApp = ({icon, changeTheme}) => {
   const history = useHistory()
   const logout =()=>{
       localStorage.removeItem("data")
@@ -14,6 +15,10 @@ const NavbarApp = () => {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ml-auto">
+      
+      <Nav.Link href="javascript:void()">
+        <i className={icon} onClick={()=>changeTheme()} ></i>
+      </Nav.Link>
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#link">Profile</Nav.Link>
       <Nav.Link href="javascript:void()" onClick={()=>logout()}>LOGOUT</Nav.Link>

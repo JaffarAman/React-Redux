@@ -12,6 +12,9 @@ const DashboardScreen = () => {
   const [indexNum, setIndexNum] = useState(null);
   const [postSend ,setPostSend] = useState(false);
   const [checkHandle , setCheckHandle] = useState(false)
+  const [icon , setIcon] = useState("fas fa-sun")
+  const [darkTheme , setDarkTheme] = useState(false)
+
   console.log(checkHandle)
   console.log("index =>>" ,indexNum)
   console.log(user);
@@ -48,7 +51,7 @@ const DashboardScreen = () => {
 
   const addPost =async () => {
     const postObj = {
-        userName: user.firstName + user.lastName,
+        userName: `${user.firstName} ${user.lastName}`,
         postCapture: inputValue,
         date: new Date().toLocaleDateString(),
         userId : user._id,
@@ -110,13 +113,24 @@ const DashboardScreen = () => {
             // post.splice(e , 1)
             // setPost([...post])
    } 
-  return (
-    <div className="w-100">
-      {/* <h1>Dashboard Screen</h1> */}
-      <NavbarApp  />
+   const changeTheme = ()=>{
+    if(!darkTheme){
+      setIcon("fas fa-moon")
+       setDarkTheme(true)
 
-      <div className={styles.postSectionBox}>
-        <div className={styles.postBox}>
+    }else{
+      setIcon("fas fa-sun")
+      setDarkTheme(false)
+
+    }
+   }
+  return (
+    <div className={`w-100 ${styles.dashBoardMainBox}`} style={{backgroundColor : darkTheme ? "#343a40" : '#E0EAFC' }} >
+      {/* <h1>Dashboard Screen</h1> */}
+      <NavbarApp icon={icon} changeTheme={changeTheme}/>
+
+      <div className={`${styles.postSectionBox}`}>
+        <div className={darkTheme? `${styles.postBox} ${styles.postBoxDark}` : styles.postBox }>
           <section className={styles.postCardHeading}>
             <p>Create Post</p>
           </section>
@@ -161,7 +175,7 @@ const DashboardScreen = () => {
                     editPostFun={editPost}
                     deletePost={deletePost}
                     ownPost={true}
-                        
+                    privatePost={val.privatePost}   
                   />
                 </div> : 
                  !val.privatePost ?
@@ -176,6 +190,7 @@ const DashboardScreen = () => {
                   editPostFun={editPost}
                   deletePost={deletePost}
                   ownPost={false}
+                  privatePost={val.privatePost}   
 
                       
                 />  </div> : null  

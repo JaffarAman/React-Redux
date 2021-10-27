@@ -1,3 +1,7 @@
+.dashBoardMainBox{
+    min-height : 100vh;
+    /* border: 1px solid red; */
+}
 .postSectionBox{
     width: 100%;
     /* border: 1px solid red; */
@@ -5,6 +9,7 @@
     justify-content: center;
     align-items: center;
     margin: 20px 0px;
+    padding: 0 10px;
 }
 .postBox{
     border: 1px solid lightgrey;
@@ -12,6 +17,11 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 10px;
     border-radius:5px;
+    
+}
+.postBoxDark{
+    border: 1px solid #09DEEA;
+    color:white;
 }
 .postCardHeading{
     width: 100%;
@@ -31,6 +41,7 @@
     border-radius:8px;
     padding:8px;
     outline:none;
+    background-color: transparent;
 }
 .postBtns{
     width: 100%;
