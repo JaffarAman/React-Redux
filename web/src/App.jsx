@@ -1,7 +1,15 @@
 import React from 'react'
 import Header from './Components/Header'
+
+import { useDispatch } from 'react-redux'
+import {amountActions} from "./state/index"
+import { bindActionCreators } from 'redux'
+import { useSelector } from 'react-redux'
 const App = () => {
-    return (
+    const dispatch = useDispatch()
+    const {depositMoney , withdrawMoney} = bindActionCreators(amountActions ,dispatch)
+    const amounts = useSelector(state => state.amount)
+    return (    
         <>
             <Header />
        
@@ -9,11 +17,23 @@ const App = () => {
 
                 <h4>Deposit / WithDraw Money</h4>
 
-                <button className="btn btn-primary mx-3">-</button>
+                {/* <button className="btn btn-primary mx-3"
+                onClick={()=>dispatch(amountActions.withdrawMoney(100))}
+                >-</button> */}
 
-                    Update Balance
+                <button className="btn btn-primary mx-3"
+                onClick={()=>withdrawMoney(100)}
+                >-</button>
 
-                <button className="btn btn-primary mx-3">+</button>
+                    Update Balance {amounts}
+
+                {/* <button className="btn btn-primary mx-3"
+                onClick={()=>dispatch(amountActions.depositMoney(100))}
+                >+</button> */}
+
+                <button className="btn btn-primary mx-3"
+                onClick={()=>depositMoney(100)}
+                >+</button>
 
 
             </div>

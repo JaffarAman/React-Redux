@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux"
 
 const Header = ()=>{
+    const amount = useSelector(state => state.amount)
     return(     
         <>
         <nav className="navbar navbar-expand-lg navbar-light">
@@ -17,7 +19,7 @@ const Header = ()=>{
               <a className="nav-link" >Link</a>
             </li>
             </ul>
-            <button disabled={true} className="btn btn-primary" >AMOUNT : 10000</button>
+            <button disabled={true} className="btn btn-primary" >AMOUNT : {amount}</button>
 
             </div>
       </nav>

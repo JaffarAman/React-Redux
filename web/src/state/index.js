@@ -1,1 +1,1 @@
-export * as action from "./Action/index"
+export * as amountActions from "./Action/index"
