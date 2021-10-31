@@ -5,7 +5,9 @@ const ProfileScreen = () => {
     return (
         <div>
             <NavbarApp />
-            PROFILE SCREEN
+            
+            
+
         </div>
     )
 }
